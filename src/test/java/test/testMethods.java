@@ -45,8 +45,8 @@ public class testMethods extends baseClass{
 	}
 	
 	public void Login() throws InterruptedException {
-		Thread.sleep(5000);
-		wait= new WebDriverWait(driver, Duration.ofSeconds(50)).until(ExpectedConditions.visibilityOf(loginpg.LandingPageValidation1));		
+		
+		wait= new WebDriverWait(driver, Duration.ofSeconds(100)).until(ExpectedConditions.visibilityOf(loginpg.LandingPageValidation1));		
 		Assert.assertEquals(loginpg.LandingPageValidation1.getText(), "A ONE STOP LENDING SOLUTION");
 		Assert.assertTrue(loginpg.LandingPageValidation2.getText().contains("Our signature product designed exclusively for the inclusive financing sector!"));
 		report.log(LogStatus.PASS,("URL is launched successfully"));
@@ -95,7 +95,7 @@ public class testMethods extends baseClass{
 		report.log(LogStatus.INFO,("All basic information is entered in create client Page"));
 		CreateClientPg.save.click();
 		report.log(LogStatus.INFO,("Submit button is clicked on create client Page"));
-		Thread.sleep(3000);
+		
 		wait= new WebDriverWait(driver, Duration.ofSeconds(50)).until(ExpectedConditions.visibilityOf(ClientActivationPg.FirstNameLabel));
 		Assert.assertEquals(ClientActivationPg.FirstNameLabel.getText(),prop.getProperty("firstname")+" "+prop.getProperty("lastname"));
 		report.log(LogStatus.PASS,("Company Activation Page is displayed"));
@@ -117,7 +117,7 @@ public class testMethods extends baseClass{
 		jse.executeScript("arguments[0].click();",ClientActivationPg.activationDate);
 		report.log(LogStatus.PASS,("Activation Date is Entered as today"));
 		CreateClientPg.save.click();
-		Thread.sleep(2000);
+		
 		wait= new WebDriverWait(driver, Duration.ofSeconds(50)).until(ExpectedConditions.visibilityOf(ClientActivationPg.ClientIDLabel));
 		Assert.assertEquals(ClientActivationPg.ClientIDLabel.getText(),"Client #: 00000"+urlSplit[5]+" | External id: | Staff:");
 		Assert.assertTrue(ClientActivationPg.clientIDactive.isDisplayed());
@@ -134,7 +134,7 @@ public class testMethods extends baseClass{
 			HomeandClientlistpg.searchTextBox.clear();
 			HomeandClientlistpg.searchTextBox.sendKeys(searchOptions[i]);
 			HomeandClientlistpg.searchButton.click();
-			Thread.sleep(2000);
+			
 			wait= new WebDriverWait(driver, Duration.ofSeconds(50)).until(ExpectedConditions.visibilityOf(HomeandClientlistpg.clientID(ClientID)));
 			Assert.assertTrue(HomeandClientlistpg.clientID(ClientID).isDisplayed());
 			Assert.assertTrue(HomeandClientlistpg.clientName(ClientID,prop.getProperty("firstname")+" "+prop.getProperty("lastname")).isDisplayed());
